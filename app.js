@@ -1,4 +1,5 @@
-const fs = require('fs');
+const yargs = require('yargs');
+const contact = require('./contact');
 
 // Create add command
 yargs.command({
@@ -22,7 +23,7 @@ yargs.command({
         }
     },  
     handler: (argv) => {
-        
+        contact.addContact(argv.name, argv.email, argv.phone);
     }
 })
 
@@ -31,14 +32,14 @@ yargs.command({
     command: 'remove',
     describe: 'Remove a note',
     builder: {
-        title: {
-            describe: 'Remove note',
+        name: {
+            describe: 'Remove contact',
             demandOption: true,
             type: 'string'
         }
     },
     handler: (argv) => {
-       
+       contact.removeContact(argv.name)
     }
 })
 
@@ -47,9 +48,10 @@ yargs.command({
     command: 'list',
     describe: 'Listing of note',
     handler: () => {
-        
+        contact.listContact();
     }
 })
+
 
 // Create a read command
 yargs.command({
@@ -63,9 +65,10 @@ yargs.command({
         }
     },
     handler: (argv) => {
-      
+        contact.readContact(argv.name)
     }
 })
+
 
 yargs.parse();
 
