@@ -2,7 +2,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 const validator = require('validator');
 
-// Read Contact by ohone
+// Read Contact by name
 const readContact = (name) => {
     const contacts = loadContacts();
     const readContact = contacts.find(contact => contact.name === name);
