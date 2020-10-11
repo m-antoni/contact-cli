@@ -2,7 +2,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 const validator = require('validator');
 
-// Read Contact by name
+// Read Contact
 const readContact = (name) => {
     const contacts = loadContacts();
     const readContact = contacts.find(contact => contact.name === name);
@@ -13,9 +13,9 @@ const readContact = (name) => {
     }
     else
     {
-        console.log(`${chalk.yellow('Name:')} ${chalk.blue.inverse(readContact.name)}`);
-        console.log(`${chalk.yellow('Email:')} ${chalk.yellow.inverse(readContact.email)}`);
-        console.log(`${chalk.yellow('Phone:')} ${chalk.magenta.inverse(readContact.phone)}`);
+        console.log(`Name: ${chalk.cyanBright(readContact.name)}`);
+        console.log(`Email: ${chalk.yellow(readContact.email)}`);
+        console.log(`Phone: ${chalk.magenta(readContact.phone)}`);
     }
 }
 
@@ -25,14 +25,14 @@ const addContact = (name, email, phone) => {
 
     if(!validator.isEmail(email))
     {
-        console.log(chalk.red.inverse('Email is not valid!'))
+        console.log(chalk.red.inverse('Email is not valid!'));
     }
     else
     {
         const duplicatePhone = contacts.find(contact => contact.phone === phone);
         const duplicateEmail = contacts.find(contact => contact.email === email);
     
-        if(!duplicatePhone && ! duplicateEmail)
+        if(!duplicatePhone && !duplicateEmail)
         {
             contacts.push({ 
                 name: name, 
@@ -59,7 +59,6 @@ const storeContact = (contacts) => {
 // Remove contact
 const removeContact = (name) => {
     const contacts = loadContacts();
-
     const contactsToKeep = contacts.filter((contact) => contact.name !== name);
 
     if(contacts.length > contactsToKeep.length)
@@ -76,14 +75,16 @@ const removeContact = (name) => {
 // Contact list
 const listContact = () => {
     const contacts = loadContacts();
-
-    console.log(chalk.yellow.inverse(`Your Contacts total of : ${contacts.length}`));
-
-    contacts.forEach(contact => {
-        console.log(chalk.green.inverse(contact.name));
-    })
+    if(contacts.length > 0)
+    {
+        console.log(chalk.white.inverse(`Contact total of : ${contacts.length}`));
+        contacts.map((contact, index) => console.log(`${index + 1}. ${chalk.cyanBright(contact.name)}`));
+    }
+    else
+    {
+        console.log(chalk(chalk.red.inverse('You don\'t have contacts yet, please add at least one.')));
+    }
 }
-
 
 // Load contacts
 const loadContacts = () => {

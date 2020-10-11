@@ -43,7 +43,7 @@ yargs.command({
     }
 })
 
-// Create a list command
+// Create list command
 yargs.command({
     command: 'list',
     describe: 'Listing of note',
@@ -52,8 +52,7 @@ yargs.command({
     }
 })
 
-
-// Create a read command
+// Create read command
 yargs.command({
     command: 'read',
     describe: 'Read a contact',
@@ -69,7 +68,6 @@ yargs.command({
     }
 })
 
-
+// parse the commands 
 yargs.parse();
-
-
+// console.log(yargs.parse());
