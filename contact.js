@@ -1,5 +1,6 @@
 const fs = require('fs');
 const chalk = require('chalk');
+const validator = require('validator');
 
 // Read Contact by ohone
 const readContact = (name) => {
@@ -21,23 +22,31 @@ const readContact = (name) => {
 // Add Contact
 const addContact = (name, email, phone) => {
     const contacts = loadContacts();
-    const duplicatePhone = contacts.find(contact => contact.phone === phone);
-    const duplicateEmail = contacts.find(contact => contact.email === email);
 
-    if(!duplicatePhone && ! duplicateEmail)
+    if(!validator.isEmail(email))
     {
-        contacts.push({ 
-            name: name, 
-            email: email, 
-            phone: phone 
-        });
+        console.log(chalk.red.inverse('Email is not valid!'))
+    }
+    else
+    {
+        const duplicatePhone = contacts.find(contact => contact.phone === phone);
+        const duplicateEmail = contacts.find(contact => contact.email === email);
     
-        storeContact(contacts);
-        console.log(chalk.green.inverse('New contact has been Added!'));
-    } 
-    else 
-    {
-        console.log(chalk.red.inverse('This Person is already in the contacts!'))
+        if(!duplicatePhone && ! duplicateEmail)
+        {
+            contacts.push({ 
+                name: name, 
+                email: email, 
+                phone: phone 
+            });
+        
+            storeContact(contacts);
+            console.log(chalk.green.inverse('New contact has been Added!'));
+        } 
+        else 
+        {
+            console.log(chalk.red.inverse('This Person is already in the contacts!'))
+        }
     }
 }
 
