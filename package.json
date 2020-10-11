@@ -1,0 +1,26 @@
+{
+  "name": "contacts",
+  "version": "1.0.0",
+  "description": "Contact app in cli using node fs module",
+  "main": "app.js",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "validator": "^13.1.17",
+    "yargs": "^16.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-antoni/contacts.git"
+  },
+  "keywords": [],
+  "author": "Michael Antoni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-antoni/contacts/issues"
+  },
+  "homepage": "https://github.com/m-antoni/contacts#readme"
+}
