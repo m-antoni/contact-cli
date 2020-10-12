@@ -32,7 +32,7 @@ const addContact = (name, email, phone) => {
         const duplicatePhone = contacts.find(contact => contact.phone === phone);
         const duplicateEmail = contacts.find(contact => contact.email === email);
     
-        if(!duplicatePhone && ! duplicateEmail)
+        if(!duplicatePhone && !duplicateEmail)
         {
             contacts.push({ 
                 name: name, 
@@ -77,12 +77,12 @@ const listContact = () => {
     const contacts = loadContacts();
     if(contacts.length > 0)
     {
-        console.log(chalk.white.inverse(`Your Contacts total of : ${contacts.length}`));
+        console.log(chalk.white.inverse(`Contact total of : ${contacts.length}`));
         contacts.map((contact, index) => console.log(`${index + 1}. ${chalk.cyanBright(contact.name)}`));
     }
     else
     {
-        console.log(chalk(chalk.red.inverse('You don\'t have contacts yet.')));
+        console.log(chalk(chalk.red.inverse('You don\'t have contacts yet, please add at least one.')));
     }
 }
 
